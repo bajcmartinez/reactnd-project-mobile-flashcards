@@ -1,6 +1,8 @@
 import React from 'react';
 import { connect } from "react-redux";
-import { Text, KeyboardAvoidingView, TextInput, TouchableOpacity, TouchableWithoutFeedback, Keyboard, Alert } from 'react-native';
+import { Text, KeyboardAvoidingView, TouchableOpacity, TouchableWithoutFeedback, Keyboard, Alert } from 'react-native';
+import { FormLabel, FormInput, FormValidationMessage } from 'react-native-elements'
+
 
 import { viewStyle, inputStyle } from '../styles';
 import { handleAddDeck } from '../actions/decks';
@@ -13,10 +15,9 @@ class NewDecksPage extends React.Component {
     addDeck() {
         const { addDeck, navigation } = this.props;
 
-        addDeck(this.state.title.trim()).then(() => {
-            if (this.props.error) {
-                Alert.alert('', this.props.error);
-            } else {
+        addDeck(this.state.title.trim())
+            .then(() => {
+            if (!this.props.error) {
                 this.setState({
                     title: ''
                 });
@@ -30,13 +31,15 @@ class NewDecksPage extends React.Component {
         return (
             <TouchableWithoutFeedback onPress={Keyboard.dismiss}>
                 <KeyboardAvoidingView style={viewStyle.centerVertically}>
-                    <TextInput
+                    <FormLabel>Title</FormLabel>
+                    <FormInput
                         style={inputStyle.text}
                         onChangeText={(title) => this.setState({title})}
-                        placeholder="title"
+                        placeholder="Title"
                         autoFocus
                         value={this.state.title}
                     />
+                    <FormValidationMessage>{this.props.error}</FormValidationMessage>
 
                     <TouchableOpacity
                         style={inputStyle.button}

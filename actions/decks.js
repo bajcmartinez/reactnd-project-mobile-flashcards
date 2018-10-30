@@ -4,6 +4,7 @@ import { showLoading, hideLoading } from "./loading";
 export const RECEIVE_DECKS = 'RECEIVE_DECKS';
 export const ADD_DECK = 'ADD_DECK';
 export const ADD_DECK_ERROR = 'ADD_DECK_ERROR';
+export const REMOVE_DECK = 'REMOVE_DECK';
 
 export function receiveDecks (decks) {
     return {
@@ -26,6 +27,13 @@ export function addDeckError(error) {
     }
 }
 
+export function removeDeck ({ title }) {
+    return {
+        type: REMOVE_DECK,
+        title,
+    }
+}
+
 export const handleLoadDecks = () => (dispatch) => {
     dispatch(showLoading());
     return api.getDecks().then((decks) => {
@@ -34,12 +42,13 @@ export const handleLoadDecks = () => (dispatch) => {
     });
 };
 
-export const handleAddDeck = (deck) => (dispatch) => {
+export const handleAddDeck = (deck) => (dispatch, getState) => {
     deck = {
         questions: [],
         ...deck
     };
-    return api.saveDeck(deck).then(() => {
-        dispatch(addDeck(deck));
+    dispatch(addDeck(deck));
+    return api.saveDeck(deck).catch(() => {
+        dispatch(removeDeck(deck));
     });
 };
