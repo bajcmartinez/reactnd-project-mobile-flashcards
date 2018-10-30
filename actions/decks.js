@@ -1,4 +1,5 @@
 import * as api from '../api';
+import { showLoading, hideLoading } from "./loading";
 
 export const RECEIVE_DECKS = 'RECEIVE_DECKS';
 export const ADD_DECK = 'ADD_DECK';
@@ -27,7 +28,7 @@ export function addDeckError(error) {
 
 export const handleLoadDecks = () => (dispatch) => {
     dispatch(showLoading());
-    return api.getQuestions().then((decks) => {
+    return api.getDecks().then((decks) => {
         dispatch(hideLoading());
         dispatch(receiveDecks(decks));
     });

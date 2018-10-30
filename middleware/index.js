@@ -6,6 +6,5 @@ import decks from './decks';
 
 export default applyMiddleware(
     thunk,
-    logger,
     decks
 )
