@@ -1,6 +1,6 @@
 import React from 'react';
 import { connect } from "react-redux";
-import { Text, KeyboardAvoidingView, TextInput, TouchableOpacity, Alert } from 'react-native';
+import { Text, KeyboardAvoidingView, TextInput, TouchableOpacity, TouchableWithoutFeedback, Keyboard, Alert } from 'react-native';
 
 import { viewStyle, inputStyle } from '../styles';
 import { handleAddDeck } from '../actions/decks';
@@ -28,22 +28,24 @@ class NewDecksPage extends React.Component {
 
     render() {
         return (
-            <KeyboardAvoidingView style={viewStyle.centerVertically}>
-                <TextInput
-                    style={inputStyle.text}
-                    onChangeText={(title) => this.setState({title})}
-                    placeholder="title"
-                    autoFocus
-                    value={this.state.title}
-                />
+            <TouchableWithoutFeedback onPress={Keyboard.dismiss}>
+                <KeyboardAvoidingView style={viewStyle.centerVertically}>
+                    <TextInput
+                        style={inputStyle.text}
+                        onChangeText={(title) => this.setState({title})}
+                        placeholder="title"
+                        autoFocus
+                        value={this.state.title}
+                    />
 
-                <TouchableOpacity
-                    style={inputStyle.button}
-                    onPress={() => this.addDeck(this.state.title)}>
+                    <TouchableOpacity
+                        style={inputStyle.button}
+                        onPress={() => this.addDeck(this.state.title)}>
 
-                    <Text style = {inputStyle.buttonText}>Add Deck</Text>
-                </TouchableOpacity>
-            </KeyboardAvoidingView>
+                        <Text style = {inputStyle.buttonText}>Add Deck</Text>
+                    </TouchableOpacity>
+                </KeyboardAvoidingView>
+            </TouchableWithoutFeedback>
         );
     }
 }
