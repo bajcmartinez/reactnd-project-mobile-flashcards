@@ -27,10 +27,10 @@ export function addDeckError(error) {
     }
 }
 
-export function removeDeck ({ title }) {
+export function removeDeck (deck) {
     return {
         type: REMOVE_DECK,
-        title,
+        deck,
     }
 }
 
@@ -48,7 +48,21 @@ export const handleAddDeck = (deck) => (dispatch, getState) => {
         ...deck
     };
     dispatch(addDeck(deck));
-    return api.saveDeck(deck).catch(() => {
-        dispatch(removeDeck(deck));
+    const { decks } = getState();
+    if (decks.error) {
+        return Promise.reject(decks.error).catch(() => {});
+    } else {
+        return api.saveDeck(deck).catch((e) => {
+            console.warn(e);
+            dispatch(removeDeck(deck));
+        });
+    }
+};
+
+export const handleRemoveDeck = (deck) => (dispatch) => {
+    dispatch(removeDeck(deck));
+    return api.removeDeck(deck.title).catch((e) => {
+        console.warn(e);
+        dispatch(addDeck(deck));
     });
 };

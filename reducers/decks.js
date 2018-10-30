@@ -15,10 +15,10 @@ export default function loading (state = { list: {}, error: null }, action) {
                 error: action.error
             };
         case REMOVE_DECK:
-            const { [action.title]:omit, ...list } = state.list;
+            const { [action.deck.title]:omit, ...list } = state.list;
             return {
                 ...state,
-                list: list
+                list
             };
         case RECEIVE_DECKS:
             return {

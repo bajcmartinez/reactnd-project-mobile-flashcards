@@ -5,12 +5,20 @@ import connect from "react-redux/es/connect/connect";
 import { viewStyle } from '../styles';
 import { handleLoadDecks } from "../actions/decks";
 
-import DeckItem from './DeckItem';
+import DeckListItem from './DeckListItem';
 
 class ListDecksPage extends React.Component {
-    componentDidMount () {
+    componentDidMount() {
         this.props.loadDecks();
     }
+
+    _onPressItem = (deck) => {
+        this.props.navigation.navigate('DeckDetailsPage', { deck });
+    };
+
+    _renderItem = ({ item }) => (
+        <DeckListItem deck={item} onPressItem={this._onPressItem} />
+    );
 
     render() {
         const { decks } = this.props;
@@ -18,7 +26,7 @@ class ListDecksPage extends React.Component {
             <View style={viewStyle.container}>
                 <FlatList
                     data={decks}
-                    renderItem={DeckItem}
+                    renderItem={this._renderItem}
                     keyExtractor={(item, index) => index.toString()}>
                 </FlatList>
             </View>

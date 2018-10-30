@@ -1,8 +1,12 @@
 import { StyleSheet } from 'react-native';
-import {} from '../actions/decks';
 
-const primaryColor = '#7a42f4';
-const secondaryText = '#fff';
+export const colors = {
+    primaryColor: '#7a42f4',
+    secondaryColor: '#e5e5e5',
+    dangerColor: '#a00',
+
+    secondaryText: '#fff'
+};
 
 export const viewStyle = StyleSheet.create({
     container: {
@@ -27,20 +31,19 @@ export const inputStyle = StyleSheet.create({
         margin: 15,
         height: 40,
         borderWidth: 1,
-        borderColor: primaryColor,
+        borderColor: colors.primaryColor,
         padding: 10
     },
 
     button: {
-        backgroundColor: primaryColor,
         justifyContent: 'center',
         alignItems: 'center',
         padding: 10,
-        margin: 15,
+        margin: 5,
         height: 40,
     },
 
     buttonText: {
-        color: secondaryText
+        color: colors.secondaryText
     }
 });

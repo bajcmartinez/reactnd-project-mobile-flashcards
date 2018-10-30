@@ -4,6 +4,8 @@ import { createStackNavigator, createBottomTabNavigator, createMaterialTopTabNav
 import { Constants } from 'expo';
 
 import ListDecksPage from './ListDecksPage';
+import DeckDetailsPage from './DeckDetailsPage';
+
 import NewDeckPage from './NewDeckPage';
 import { Ionicons } from '@expo/vector-icons';
 
@@ -37,9 +39,13 @@ const Tabs = tabNavigator({
 const MainNavigator = createStackNavigator({
     Home: {
         screen: Tabs,
-        navigationOptions: ({ navigation }) => ({
+        navigationOptions: () => ({
             header: null
         })
+    },
+
+    DeckDetailsPage: {
+        screen: DeckDetailsPage
     }
 });
 

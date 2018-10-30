@@ -16,7 +16,6 @@ export function removeDeck (title) {
     return AsyncStorage.getItem(DECKS_STORAGE_KEY)
         .then((results) => {
             const { [title]: omit, ...decks } = JSON.parse(results);
-
-            AsyncStorage.setItem(CALENDAR_STORAGE_KEY, JSON.stringify(decks));
+            AsyncStorage.setItem(DECKS_STORAGE_KEY, JSON.stringify(decks));
         })
 }

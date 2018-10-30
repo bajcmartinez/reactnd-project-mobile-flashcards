@@ -1,10 +1,11 @@
 import React from 'react';
 import { connect } from "react-redux";
-import { Text, KeyboardAvoidingView, TouchableOpacity, TouchableWithoutFeedback, Keyboard, Alert } from 'react-native';
+import { Button } from 'react-native-elements';
+import { KeyboardAvoidingView, TouchableWithoutFeedback, Keyboard } from 'react-native';
 import { FormLabel, FormInput, FormValidationMessage } from 'react-native-elements'
 
 
-import { viewStyle, inputStyle } from '../styles';
+import { viewStyle, inputStyle, colors } from '../styles';
 import { handleAddDeck } from '../actions/decks';
 
 class NewDecksPage extends React.Component {
@@ -41,12 +42,10 @@ class NewDecksPage extends React.Component {
                     />
                     <FormValidationMessage>{this.props.error}</FormValidationMessage>
 
-                    <TouchableOpacity
-                        style={inputStyle.button}
-                        onPress={() => this.addDeck(this.state.title)}>
-
-                        <Text style = {inputStyle.buttonText}>Add Deck</Text>
-                    </TouchableOpacity>
+                    <Button title="Add Deck"
+                            buttonStyle={inputStyle.button}
+                            backgroundColor={colors.primaryColor}
+                            onPress={() => this.addDeck(this.state.title)} />
                 </KeyboardAvoidingView>
             </TouchableWithoutFeedback>
         );
