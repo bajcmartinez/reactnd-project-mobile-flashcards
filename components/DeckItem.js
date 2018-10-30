@@ -1,10 +1,10 @@
-import { Text, View } from "react-native";
 import React from "react";
+import { ListItem } from 'react-native-elements';
 
-const DeckItem = ({ item }) => {
-    return <View>
-        <Text>Hello! {item.title}</Text>
-    </View>;
+const DeckItem = ({ item, index }) => {
+    return <ListItem
+        title={item.title}
+        badge={{ value: item.questions.length.toString() }} />;
 };
 
 export default DeckItem;
