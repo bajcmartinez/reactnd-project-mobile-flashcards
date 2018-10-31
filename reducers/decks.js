@@ -1,4 +1,4 @@
-import {ADD_DECK, ADD_DECK_ERROR, RECEIVE_DECKS, REMOVE_DECK} from '../actions/decks';
+import {ADD_DECK, ADD_DECK_ERROR, ADD_QUESTION, RECEIVE_DECKS, REMOVE_DECK} from '../actions/decks';
 
 export default function loading (state = { list: {}, error: null }, action) {
     switch (action.type) {
@@ -23,6 +23,22 @@ export default function loading (state = { list: {}, error: null }, action) {
         case RECEIVE_DECKS:
             return {
                 list: action.decks ? action.decks : {},
+                error: null
+            };
+        case ADD_QUESTION:
+            return {
+                list: {...state.list,
+                    [action.deck.title]: {
+                        ...action.deck,
+                        questions: [
+                            ...action.deck.questions,
+                            {
+                                question: action.question,
+                                answer: action.answer
+                            }
+                        ]
+                    }
+                },
                 error: null
             };
         default :

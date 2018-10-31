@@ -5,6 +5,7 @@ import { Constants } from 'expo';
 
 import ListDecksPage from './ListDecksPage';
 import DeckDetailsPage from './DeckDetailsPage';
+import AddQuestionPage from './AddQuestionPage';
 
 import NewDeckPage from './NewDeckPage';
 import { Ionicons } from '@expo/vector-icons';
@@ -46,6 +47,9 @@ const MainNavigator = createStackNavigator({
 
     DeckDetailsPage: {
         screen: DeckDetailsPage
+    },
+    AddQuestion: {
+        screen: AddQuestionPage
     }
 });
 

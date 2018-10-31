@@ -17,15 +17,15 @@ class NewDecksPage extends React.Component {
         const { addDeck, navigation } = this.props;
 
         addDeck(this.state.title.trim())
-            .then(() => {
+            .then((deck) => {
             if (!this.props.error) {
                 this.setState({
                     title: ''
                 });
 
-                navigation.navigate("ListDecksPage");
+                navigation.navigate('DeckDetailsPage', { title: deck.title });
             }
-        });
+        }).catch(() => {});
     }
 
     render() {

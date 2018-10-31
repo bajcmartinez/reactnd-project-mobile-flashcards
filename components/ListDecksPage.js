@@ -8,12 +8,16 @@ import { handleLoadDecks } from "../actions/decks";
 import DeckListItem from './DeckListItem';
 
 class ListDecksPage extends React.Component {
+    static navigationOptions = {
+        title: 'Home'
+    };
+
     componentDidMount() {
         this.props.loadDecks();
     }
 
     _onPressItem = (deck) => {
-        this.props.navigation.navigate('DeckDetailsPage', { deck });
+        this.props.navigation.navigate('DeckDetailsPage', { title: deck.title });
     };
 
     _renderItem = ({ item }) => (

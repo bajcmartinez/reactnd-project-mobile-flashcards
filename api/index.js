@@ -9,7 +9,7 @@ export function getDecks () {
 export function saveDeck (deck) {
     return AsyncStorage.mergeItem(DECKS_STORAGE_KEY, JSON.stringify({
         [deck.title]: deck
-    }))
+    })).then(() => deck)
 }
 
 export function removeDeck (title) {
@@ -18,4 +18,18 @@ export function removeDeck (title) {
             const { [title]: omit, ...decks } = JSON.parse(results);
             AsyncStorage.setItem(DECKS_STORAGE_KEY, JSON.stringify(decks));
         })
+}
+
+export function addQuestion (deck, question, answer) {
+    return AsyncStorage.mergeItem(DECKS_STORAGE_KEY, JSON.stringify({
+        [deck.title]: {
+            ...deck,
+            questions: [
+                ...deck.questions, {
+                    question,
+                    answer
+                }
+            ]
+        }
+    })).then(() => deck)
 }

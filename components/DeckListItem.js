@@ -1,8 +1,6 @@
 import React from "react";
 import { ListItem } from 'react-native-elements';
 
-import { viewStyle, inputStyle } from '../styles';
-
 const DeckListItem = ({ deck, onPressItem }) => {
     return <ListItem
         title={deck.title}

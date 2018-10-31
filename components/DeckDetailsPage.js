@@ -10,16 +10,21 @@ class DeckDetailsPage extends Component {
         title: 'Details'
     };
 
-    _deleteDeck(deck) {
+    _deleteDeck() {
         const { removeDeck, navigation } = this.props;
-        removeDeck(deck).then(() => {
+        removeDeck(this.props.deck).then(() => {
             navigation.goBack();
         });
     }
 
+    _addQuestion() {
+        const { deck } = this.props;
+        this.props.navigation.navigate('AddQuestion', { deck });
+    }
+
     render() {
-        const { navigation } = this.props;
-        const deck = navigation.getParam('deck');
+        const { deck } = this.props;
+
         return <Card title={deck.title}>
             <Text style={{marginBottom: 10}}>
                 This deck contains {deck.questions.length} questions!
@@ -27,17 +32,25 @@ class DeckDetailsPage extends Component {
 
             <Button title="Add Questions"
                     buttonStyle={inputStyle.button}
-                    backgroundColor={colors.primaryColor}/>
+                    backgroundColor={colors.primaryColor}
+                    onPress={() => this._addQuestion()} />
 
             <Button title="Start Quiz"
                     buttonStyle={inputStyle.button}
-                    backgroundColor={colors.secondaryColor}/>
+                    backgroundColor={colors.secondaryColor} />
 
             <Button title="Delete"
                     buttonStyle={inputStyle.button}
                     backgroundColor={colors.dangerColor}
-                    onPress={() => this._deleteDeck(deck)} />
+                    onPress={() => this._deleteDeck()} />
         </Card>;
+    }
+}
+
+function mapStateToProps({ decks }, { navigation }) {
+    const title = navigation.getParam('title');
+    return {
+        deck: decks.list[title]
     }
 }
 
@@ -47,4 +60,4 @@ function mapDispatchToProps(dispatch) {
     }
 }
 
-export default connect(null, mapDispatchToProps)(DeckDetailsPage);
+export default connect(mapStateToProps, mapDispatchToProps)(DeckDetailsPage);
