@@ -2,6 +2,10 @@ import React, { Component } from "react";
 import connect from "react-redux/es/connect/connect";
 import { Text, View } from 'react-native';
 import { Button } from 'react-native-elements';
+import {
+    clearLocalNotification,
+    setLocalNotification
+} from '../api/notifications';
 
 import {colors, inputStyle, viewStyle} from '../styles';
 import QuizQuestion from './QuizQuestion';
@@ -38,6 +42,10 @@ class QuizPage extends Component {
 
         if (isCorrect) {
             correct++;
+        }
+
+        if (ended) {
+            clearLocalNotification().then(setLocalNotification);
         }
 
         this.setState({
