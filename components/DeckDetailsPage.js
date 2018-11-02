@@ -31,6 +31,10 @@ class DeckDetailsPage extends Component {
     render() {
         const { deck } = this.props;
 
+        if (!deck) {
+            return <Text>Deck is missing!</Text>
+        }
+
         return <Card title={deck.title}>
             <Text style={{marginBottom: 10}}>
                 This deck contains {deck.questions.length} questions!
@@ -68,7 +72,7 @@ function mapDispatchToProps(dispatch) {
 }
 
 DeckDetailsPage.propTypes = {
-    deck: PropTypes.object.isRequired,
+    deck: PropTypes.object,
     navigation: PropTypes.object.isRequired,
     removeDeck: PropTypes.func.isRequired
 };
