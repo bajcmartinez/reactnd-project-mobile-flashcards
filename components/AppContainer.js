@@ -8,6 +8,7 @@ import DeckDetailsPage from './DeckDetailsPage';
 import AddQuestionPage from './AddQuestionPage';
 
 import NewDeckPage from './NewDeckPage';
+import QuizPage from "./QuizPage";
 import { Ionicons } from '@expo/vector-icons';
 
 function AppStatusBar({backgroundColor, ...props}) {
@@ -48,8 +49,11 @@ const MainNavigator = createStackNavigator({
     DeckDetailsPage: {
         screen: DeckDetailsPage
     },
-    AddQuestion: {
+    AddQuestionPage: {
         screen: AddQuestionPage
+    },
+    QuizPage: {
+        screen: QuizPage
     }
 });
 

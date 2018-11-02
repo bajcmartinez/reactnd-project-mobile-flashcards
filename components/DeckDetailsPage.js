@@ -19,7 +19,12 @@ class DeckDetailsPage extends Component {
 
     _addQuestion() {
         const { deck } = this.props;
-        this.props.navigation.navigate('AddQuestion', { deck });
+        this.props.navigation.navigate('AddQuestionPage', { deck });
+    }
+
+    _startQuiz() {
+        const { deck } = this.props;
+        this.props.navigation.navigate('QuizPage', { deck });
     }
 
     render() {
@@ -37,7 +42,8 @@ class DeckDetailsPage extends Component {
 
             <Button title="Start Quiz"
                     buttonStyle={inputStyle.button}
-                    backgroundColor={colors.secondaryColor} />
+                    backgroundColor={colors.secondaryColor}
+                    onPress={() => this._startQuiz()} />
 
             <Button title="Delete"
                     buttonStyle={inputStyle.button}
