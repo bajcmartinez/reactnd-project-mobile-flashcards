@@ -1,4 +1,5 @@
 import React, { Component } from "react";
+import PropTypes from 'prop-types';
 import {Keyboard, KeyboardAvoidingView, Text, TouchableWithoutFeedback} from "react-native";
 import {Button, FormInput, FormLabel, FormValidationMessage} from 'react-native-elements';
 import connect from "react-redux/es/connect/connect";
@@ -67,5 +68,11 @@ function mapDispatchToProps(dispatch) {
         addQuestion: (deck, question, answer) => dispatch(handleAddQuestion(deck, question, answer))
     }
 }
+
+AddQuestionPage.propTypes = {
+    addQuestion: PropTypes.func.isRequired,
+    error: PropTypes.string,
+    navigation: PropTypes.object.isRequired
+};
 
 export default connect(mapStateToProps, mapDispatchToProps)(AddQuestionPage);

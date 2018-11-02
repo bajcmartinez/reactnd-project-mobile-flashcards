@@ -1,4 +1,5 @@
 import React, { Component } from "react";
+import PropTypes from 'prop-types';
 import { Text } from "react-native";
 import { Card, Button } from 'react-native-elements';
 import { colors, inputStyle } from "../styles";
@@ -65,5 +66,11 @@ function mapDispatchToProps(dispatch) {
         removeDeck: (title) => dispatch(handleRemoveDeck(title))
     }
 }
+
+DeckDetailsPage.propTypes = {
+    deck: PropTypes.object.isRequired,
+    navigation: PropTypes.object.isRequired,
+    removeDeck: PropTypes.func.isRequired
+};
 
 export default connect(mapStateToProps, mapDispatchToProps)(DeckDetailsPage);

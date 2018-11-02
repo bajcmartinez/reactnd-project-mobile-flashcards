@@ -7,6 +7,7 @@ import { FormLabel, FormInput, FormValidationMessage } from 'react-native-elemen
 
 import { viewStyle, inputStyle, colors } from '../styles';
 import { handleAddDeck } from '../actions/decks';
+import PropTypes from 'prop-types';
 
 class NewDecksPage extends React.Component {
     state = {
@@ -63,5 +64,11 @@ function mapDispatchToProps(dispatch) {
         addDeck: (title) => dispatch(handleAddDeck({ title }))
     }
 }
+
+NewDecksPage.propTypes = {
+    addDeck: PropTypes.func.isRequired,
+    error: PropTypes.string,
+    navigation: PropTypes.object.isRequired
+};
 
 export default connect(mapStateToProps, mapDispatchToProps)(NewDecksPage);

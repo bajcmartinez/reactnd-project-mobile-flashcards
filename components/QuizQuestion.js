@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import { Text, View } from "react-native";
 import {Card} from 'react-native-elements';
+import PropTypes from 'prop-types';
 
 import {viewStyle} from '../styles';
 import QuizQuestionButtons from './QuizQuestionButtons';
@@ -47,5 +48,10 @@ class QuizQuestion extends Component {
         )
     }
 }
+
+QuizQuestion.propTypes = {
+    question: PropTypes.object.isRequired,
+    validateAnswer: PropTypes.func.isRequired
+};
 
 export default QuizQuestion;

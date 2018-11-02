@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import { View, FlatList } from 'react-native';
 import connect from "react-redux/es/connect/connect";
 
@@ -49,5 +50,11 @@ function mapDispatchToProps(dispatch) {
         loadDecks: () => dispatch(handleLoadDecks())
     }
 }
+
+ListDecksPage.propTypes = {
+    decks: PropTypes.array.isRequired,
+    loadDecks: PropTypes.func.isRequired,
+    navigation: PropTypes.object.isRequired
+};
 
 export default connect(mapStateToProps, mapDispatchToProps)(ListDecksPage);

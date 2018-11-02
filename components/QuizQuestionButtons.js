@@ -1,5 +1,6 @@
 import React, {Fragment} from 'react';
 import { Button } from 'react-native-elements';
+import PropTypes from 'prop-types';
 import {colors, inputStyle} from "../styles";
 
 const QuizQuestionButtons = ({showAnswer, toggleAnswer, validateAnswer}) => {
@@ -25,5 +26,11 @@ const QuizQuestionButtons = ({showAnswer, toggleAnswer, validateAnswer}) => {
        />
     }
 }
+
+QuizQuestionButtons.propTypes = {
+    showAnswer: PropTypes.bool.isRequired,
+    toggleAnswer: PropTypes.func.isRequired,
+    validateAnswer: PropTypes.func.isRequired
+};
 
 export default QuizQuestionButtons;

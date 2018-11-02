@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import connect from "react-redux/es/connect/connect";
 import { Text, View } from 'react-native';
 import { Button } from 'react-native-elements';
+import PropTypes from 'prop-types';
 import {
     clearLocalNotification,
     setLocalNotification
@@ -109,5 +110,9 @@ function mapDispatchToProps(dispatch) {
         addQuestion: (deck, question, answer) => dispatch(handleAddQuestion(deck, question, answer))
     }
 }
+
+QuizPage.propTypes = {
+    navigation: PropTypes.object.isRequired
+};
 
 export default connect(null, mapDispatchToProps)(QuizPage);
